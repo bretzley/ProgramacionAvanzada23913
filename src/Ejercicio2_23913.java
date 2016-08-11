@@ -3,9 +3,7 @@
  * 		BRETZNER LEYSSA GONZALEZ
  ------------------------------------------------------------------*/
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.Scanner;
 
 public class Ejercicio2_23913 
 {
@@ -20,48 +18,35 @@ public class Ejercicio2_23913
 				return false;
 		}
 		
-		//ADD STRING'S CHARACTERS IN A DICTIONARY
-		public static void dictionary(String stg1, String stg2)
-		{
-			char[] ch1 = stg1.toCharArray();
-			char[] ch2 = stg2.toCharArray();
-			int key = 0;
-			
-			
-			
-			for(int i=0; i < stg1.length(); i++)
-			{
-				if(ch1[i] == stg1.charAt(i))
-					key--;
-				else
-					key++;
-				
-				
-			}
-			
-			
-		}
-		
 		//TEST THAT EACH OF THE LETTERS OF BOTH STRINGS ARE CONTAINED IN THE DICTIONARY
-		public static boolean testLetters(String stg1, String stg2)
-		{
-			//char[] ch1 = stg1.toCharArray();
-			//char[] ch2 = stg2.toCharArray();
-			Ejercicio2_23913.dictionary(stg1,stg2);
-			
-		
-			
+		public static boolean testLetters(String source, String compare)
+		{			
+			for (char cs : source.toCharArray()) {
+				
+				if (compare.indexOf(cs) < 0)
+					return false;
+			}
 			return true;
 		}
 		
 		//MAIN CLASS WHERE USER INPUTS TWO DIFFERENT STRINGS TO BE TESTED
 		public static void main(String args[])
 		{
-			String stg1 = "god";
-			String stg2 = "dog";
+			
+			System.out.println("Por favor ingresa la primera palabra: ");
+			Scanner userInput = new Scanner(System.in);
+			String stg1 = userInput.next();
+			System.out.println("Por favor ingresa la segunda palabra: ");
+			String stg2 = userInput.next();
 			
 			Ejercicio2_23913.testLength(stg1, stg2);
-			Ejercicio2_23913.testLetters(stg1, stg2);	
+			
+			boolean first, second;
+			first = Ejercicio2_23913.testLetters(stg1, stg2);
+			second = Ejercicio2_23913.testLetters(stg2, stg1);
+			
+			String result = first && second ? "Si, tus palabras tienen todos los mismos caracteres" : "No son iguales";
+			System.out.println(result);
 		}
 
 }
